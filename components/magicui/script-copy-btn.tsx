@@ -31,7 +31,9 @@ export function ScriptCopyBtn({
   const [copied, setCopied] = useState(false);
   const [highlightedCode, setHighlightedCode] = useState("");
   const { theme } = useTheme();
-  const command = commands.find((line) => line.startsWith(packageManager))?.split("|")[1] || '';
+  const command =
+    commands.find((line) => line.startsWith(packageManager))?.split("|")[1] ||
+    "";
 
   useEffect(() => {
     async function loadHighlightedCode() {
@@ -62,17 +64,12 @@ export function ScriptCopyBtn({
   };
 
   return (
-    <div
-      className={cn(
-        "flex w-full no-prose",
-        className,
-      )}
-    >
+    <div className={cn("flex w-full no-prose", className)}>
       <div className="w-full">
         <div className="flex items-center justify-between">
           {showMultiplePackageOptions && (
             <div className="relative">
-              <div className="inline-flex overflow-hidden rounded-md border border-border text-xs">
+              <div className="inline-flex overflow-hidden rounded-md border text-xs">
                 {packageManagers.map((pm, index) => (
                   <div key={pm} className="flex items-center">
                     {index > 0 && (
@@ -118,7 +115,7 @@ export function ScriptCopyBtn({
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
               />
             ) : (
-              <pre className="rounded-md border border-border bg-white p-2 px-4 font-mono dark:bg-black">
+              <pre className="rounded-md border bg-white p-2 px-4 font-mono dark:bg-black">
                 {command}
               </pre>
             )}
@@ -156,12 +153,12 @@ export const scriptCopyBlockSchema: Template = {
       codeLanguage: "bash",
       lightTheme: "catppuccin-latte",
       darkTheme: "catppuccin-mocha",
-      commandMap: 
-        "npm|npm install\n"+
-        "pnpm|pnpm install\n"+
-        "yarn|yarn install\n"+
+      commandMap:
+        "npm|npm install\n" +
+        "pnpm|pnpm install\n" +
+        "yarn|yarn install\n" +
         "bun|bun install",
-    }
+    },
   },
   fields: [
     {
@@ -192,5 +189,5 @@ export const scriptCopyBlockSchema: Template = {
         component: "textarea",
       },
     },
-  ]
+  ],
 };
