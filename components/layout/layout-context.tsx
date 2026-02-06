@@ -9,7 +9,6 @@ interface LayoutState {
   >;
   pageData: {};
   setPageData: React.Dispatch<React.SetStateAction<{}>>;
-  theme: GlobalQuery["global"]["theme"];
 }
 
 const LayoutContext = React.createContext<LayoutState | undefined>(undefined);
@@ -40,11 +39,9 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
   pageData: initialPageData,
 }) => {
   const [globalSettings, setGlobalSettings] = useState<GlobalQuery["global"]>(
-    initialGlobalSettings
+    initialGlobalSettings,
   );
   const [pageData, setPageData] = useState<{}>(initialPageData);
-
-  const theme = globalSettings.theme;
 
   return (
     <LayoutContext.Provider
@@ -53,7 +50,6 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
         setGlobalSettings,
         pageData,
         setPageData,
-        theme,
       }}
     >
       {children}
