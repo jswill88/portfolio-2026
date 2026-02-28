@@ -14,11 +14,8 @@ export const Section: React.FC<SectionProps> = ({
   ...props
 }) => {
   return (
-    <div className={background || "bg-default"}>
-      <section
-        className={cn("py-12 mx-auto max-w-7xl px-6", className)}
-        {...props}
-      >
+    <div className="bg-default">
+      <section className={cn("mx-auto max-w-7xl px-5", className)} {...props}>
         {children}
       </section>
     </div>

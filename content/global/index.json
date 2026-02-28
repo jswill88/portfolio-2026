@@ -1,5 +1,6 @@
 {
   "name": "Josh Williams",
+  "title": "Software Developer",
   "header": {
     "icon": {
       "name": "Logo",
@@ -14,10 +15,6 @@
       {
         "href": "/about",
         "label": "About"
-      },
-      {
-        "href": "/posts",
-        "label": "Blog"
       }
     ]
   },

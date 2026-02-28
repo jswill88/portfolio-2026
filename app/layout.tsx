@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import { Inter as FontSans, Lato, Nunito } from "next/font/google";
+import { Roboto, Nanum_Gothic_Coding, Rock_Salt } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { VideoDialogProvider } from "@/components/ui/VideoDialogContext";
 import VideoDialog from "@/components/ui/VideoDialog";
@@ -8,20 +8,22 @@ import VideoDialog from "@/components/ui/VideoDialog";
 import "@/styles.css";
 import { TailwindIndicator } from "@/components/ui/breakpoint-indicator";
 
-const fontSans = FontSans({
+const fontSans = Roboto({
   subsets: ["latin"],
   variable: "--font-sans",
+  weight: ["400", "700", "900"],
 });
 
-const nunito = Nunito({
+const fontMono = Nanum_Gothic_Coding({
   subsets: ["latin"],
-  variable: "--font-nunito",
+  variable: "--font-mono",
+  weight: ["400", "700"],
 });
 
-const lato = Lato({
+const fontDisplay = Rock_Salt({
   subsets: ["latin"],
-  variable: "--font-lato",
-  weight: "400",
+  variable: "--font-display",
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -35,8 +37,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cn(fontSans.variable, nunito.variable, lato.variable)}>
-      <body className="min-h-screen bg-background font-sans antialiased">
+    <html
+      lang="en"
+      className={cn(fontSans.variable, fontMono.variable, fontDisplay.variable)}
+    >
+      <body className="min-h-screen bg-gray-100 font-sans antialiased">
         <VideoDialogProvider>
           {children}
           <VideoDialog />

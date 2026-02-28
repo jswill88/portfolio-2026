@@ -5,19 +5,18 @@ import Link from "next/link";
 import { Icon } from "../../icon";
 import { useLayout } from "../layout-context";
 import { Menu, X } from "lucide-react";
-import { AnimatedGroup } from "../../motion-primitives/animated-group";
-import { AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
+import { animationPresets } from "@/lib/constants/animations";
 import { useScrollLock } from "@/hooks/useScrollLock";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { NavLink } from "@/components/ui/nav-link";
 
 export const Header = () => {
   const { globalSettings } = useLayout();
-  const header = globalSettings!.header!;
-
   const [menuState, setMenuState] = useState(false);
   const menuRef = useRef<HTMLUListElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const header = globalSettings?.header;
 
   useScrollLock(menuState);
   useFocusTrap(menuState, menuRef, menuButtonRef);
@@ -35,30 +34,30 @@ export const Header = () => {
     <>
       <AnimatePresence>
         {menuState && (
-          <AnimatedGroup
-            preset="fade"
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm lg:hidden z-15"
+          <motion.div
+            {...animationPresets.fade}
+            className="lg:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-1"
             onClick={() => setMenuState(false)}
             aria-hidden="true"
-          ></AnimatedGroup>
+          />
         )}
       </AnimatePresence>
 
-      <header className="relative z-20">
+      <header className="relative z-1">
         <nav
           data-state={menuState && "active"}
-          className="border-b w-full bg-background"
+          className="w-full bg-gray-100 border-b"
         >
-          <div className="mx-auto max-w-7xl px-5 transition-all duration-300">
-            <div className="lg:flex flex-wrap items-center justify-between py-2 lg:py-4">
-              <div className="flex w-full items-center justify-between gap-12">
+          <div className="mx-auto max-w-7xl">
+            <div className="lg:flex flex-wrap items-center justify-between">
+              <div className="w-full flex items-center justify-between gap-12">
                 <Link href="/" aria-label="home">
                   <Icon
-                    className="shrink-0 w-12 lg:w-18"
+                    className="w-20 lg:w-30 py-2 px-4 lg:px-6 shrink-0"
                     data={{
-                      name: header.icon!.name,
-                      color: header.icon!.color,
-                      style: header.icon!.style,
+                      name: header?.icon?.name,
+                      color: header?.icon?.color,
+                      style: header?.icon?.style,
                       size: "custom",
                     }}
                   />
@@ -71,45 +70,60 @@ export const Header = () => {
                   aria-expanded={menuState}
                   aria-controls="mobile-menu"
                   aria-haspopup="dialog"
-                  className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden"
+                  className="block lg:hidden relative p-2.5 z-20 cursor-pointer"
                 >
-                  <Menu className="in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
-                  <X className="in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 opacity-0 duration-200" />
+                  <Menu className="in-data-[state=active]:opacity-0 size-6 duration-200" />
+                  <X className="absolute inset-0 m-auto opacity-0 in-data-[state=active]:opacity-100 size-6  duration-200" />
                 </button>
 
                 <div className="hidden lg:block">
-                  <ul className="flex gap-8 text-sm">
-                    {header.nav!.map((item, index) => (
-                      <li key={index}>
-                        <NavLink href={item!.href!} label={item!.label!} />
-                      </li>
-                    ))}
+                  <ul className="flex text-sm">
+                    {header?.nav &&
+                      header.nav.map((item, index) => item !== null && (
+                        <li key={index}>
+                          <NavLink
+                            href={item.href}
+                            label={item.label ?? item.href}
+                            customClasses="p-5"
+                          />
+                        </li>
+                      ))}
                   </ul>
                 </div>
               </div>
+
               <AnimatePresence>
                 {menuState && (
-                  <AnimatedGroup
+                  <motion.div
+                    {...animationPresets.fade}
                     id="mobile-menu"
                     role="dialog"
                     aria-modal="true"
                     aria-labelledby="mobile-menu-label"
-                    className="dark:shadow-none absolute lg:hidden top-full right-0 min-w-80"
+                    className="lg:hidden absolute top-full right-0 min-w-80"
                   >
                     <h2 id="mobile-menu-label" className="sr-only">
                       Main navigation
                     </h2>
                     <ul
                       ref={menuRef}
-                      className="space-y-2 text-base p-5 bg-popover rounded-bl-2xl border-l border-b shadow-lg"
+                      className="text-base bg-gray-100 rounded-bl-xl border-l border-b shadow-lg"
                     >
-                      {header.nav!.map((item, index) => (
-                        <li key={index}>
-                          <NavLink href={item!.href!} label={item!.label!} />
-                        </li>
-                      ))}
+                      {header?.nav &&
+                        header.nav.map(
+                          (item, index) =>
+                            item !== null && (
+                              <li key={index}>
+                                <NavLink
+                                  href={item.href}
+                                  label={item.label ?? item.href}
+                                  customClasses="py-2 px-5"
+                                />
+                              </li>
+                            ),
+                        )}
                     </ul>
-                  </AnimatedGroup>
+                  </motion.div>
                 )}
               </AnimatePresence>
             </div>

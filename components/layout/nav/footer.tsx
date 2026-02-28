@@ -10,7 +10,7 @@ export const Footer = () => {
   const { footer } = globalSettings!;
 
   return (
-    <footer className="border-t bg-background dark:bg-transparent">
+    <footer className="border-t bg-gray-100">
       <div className="mx-auto max-w-7xl px-5">
         <div className="flex flex-wrap items-center gap-6 py-6 flex-col md:flex-row md:justify-between">
           <div className="hidden md:block">
