@@ -47,7 +47,7 @@ export const Header = () => {
       <header className="relative z-1">
         <nav
           data-state={menuState && "active"}
-          className="w-full bg-white/80 border-b border-gray-200 backdrop-blur-sm dark:bg-slate-900/80 dark:border-slate-800"
+          className="w-full bg-gray-100 border-b border-gray-400 backdrop-blur-sm dark:bg-gray-800 dark:border-gray-700"
         >
           <div className="mx-auto max-w-7xl">
             <div className="lg:flex flex-wrap items-center justify-between">
@@ -79,24 +79,23 @@ export const Header = () => {
                     <Menu className="in-data-[state=active]:opacity-0 size-6 duration-200" />
                     <X className="absolute inset-0 m-auto opacity-0 in-data-[state=active]:opacity-100 size-6 duration-200" />
                   </button>
-                </div>
-
-                <div className="hidden lg:block">
-                  <ul className="flex text-sm">
-                    {header?.nav &&
-                      header.nav.map(
-                        (item, index) =>
-                          item !== null && (
-                            <li key={index}>
-                              <NavLink
-                                href={item.href}
-                                label={item.label ?? item.href}
-                                customClasses="p-5"
-                              />
-                            </li>
-                          ),
-                      )}
-                  </ul>
+                  <div className="hidden lg:block">
+                    <ul className="flex text-sm">
+                      {header?.nav &&
+                        header.nav.map(
+                          (item, index) =>
+                            item !== null && (
+                              <li key={index}>
+                                <NavLink
+                                  href={item.href}
+                                  label={item.label ?? item.href}
+                                  customClasses="p-5"
+                                />
+                              </li>
+                            ),
+                        )}
+                    </ul>
+                  </div>
                 </div>
               </div>
 
@@ -115,7 +114,7 @@ export const Header = () => {
                     </h2>
                     <ul
                       ref={menuRef}
-                      className="text-base bg-white/80 rounded-bl-xl border-l border-b border-gray-200 shadow-lg dark:bg-slate-900/90 dark:border-slate-800"
+                      className="text-base bg-gray-100 rounded-bl-xl border-l border-b border-gray-400 shadow-lg dark:bg-gray-800 dark:border-gray-700"
                     >
                       {header?.nav &&
                         header.nav.map(

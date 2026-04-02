@@ -35,13 +35,13 @@ export default function ThemeToggle() {
 
   return (
     <div
-      className="relative inline-flex items-center rounded-full bg-slate-200 p-1 dark:bg-slate-700"
+      className="relative inline-flex items-center rounded-full p-1 bg-gray-200 dark:bg-gray-700"
       style={{
         '--toggle-button-width': '32px'
       } as React.CSSProperties}
     >
       <div
-        className="absolute top-1 rounded-full bg-white shadow-md transition-transform duration-200 ease-in-out dark:bg-slate-900"
+        className="absolute top-1 rounded-full bg-white shadow-md transition-transform duration-200 ease-in-out dark:bg-gray-800"
         style={{
           width: "var(--toggle-button-width)",
           height: "var(--toggle-button-width)",
@@ -56,7 +56,7 @@ export default function ThemeToggle() {
           onClick={() => setTheme(option.key)}
           aria-label={`Set ${option.key} theme`}
           aria-pressed={normalizedTheme === option.key}
-          className="relative z-10 flex items-center justify-center rounded-full text-slate-600 transition-colors hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 cursor-pointer"
+          className="relative flex items-center justify-center rounded-full text-gray-600 transition-colors hover:text-slate-800 dark:text-gray-400 dark:hover:text-slate-200 cursor-pointer"
           style={{
             width: 'var(--toggle-button-width)',
             height: 'var(--toggle-button-width)',

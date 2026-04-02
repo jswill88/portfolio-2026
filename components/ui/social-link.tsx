@@ -27,7 +27,7 @@ export function SocialLink({ link, ...rest }: SocialLinkProps) {
       >
         <Icon
           data={{ ...link.icon, size: "small" }}
-          className="block text-gray-900 dark:text-white ease-linear"
+          className="block text-gray-900 dark:text-gray-100 ease-linear"
           aria-hidden
         />
         <Icon

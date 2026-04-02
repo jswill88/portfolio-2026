@@ -24,7 +24,7 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
           blurDataURL={data.image.blurDataURL}
           sizes={[{ maxWidth: "40em", width: "100vw" }, { width: 640 }]}
           isLcp={true}
-          className="justify-self-center sm:justify-self-auto w-full max-w-50 sm:max-w-lg rounded-full border"
+          className="justify-self-center sm:justify-self-auto w-full max-w-50 sm:max-w-lg rounded-full border dark:border-gray-700"
         />
       )}
       <div className="relative grid gap-3 md:gap-5 justify-items-start">

@@ -10,10 +10,10 @@ export const Footer = () => {
   const { footer } = globalSettings!;
 
   return (
-    <footer className="border-t bg-gray-100 text-slate-800 dark:bg-slate-900 dark:text-slate-200">
+    <footer className="border-t border-gray-400 bg-gray-100 dark:bg-gray-800  dark:border-gray-700">
       <div className="mx-auto max-w-7xl px-5">
         <div className="flex flex-wrap items-center gap-6 py-6 flex-col md:flex-row md:justify-between">
-          <div className="hidden md:block text-slate-700 dark:text-slate-300">
+          <div className="hidden md:block">
             <CopyrightLine />
           </div>
 
@@ -23,7 +23,7 @@ export const Footer = () => {
             ))}
           </div>
 
-          <div className="block md:hidden text-slate-700 dark:text-slate-300">
+          <div className="block md:hidden">
             <CopyrightLine />
           </div>
         </div>
@@ -46,7 +46,7 @@ const CopyrightLine = () => {
         />
       </Link>
 
-      <span className="self-center text-foreground text-sm ml-2">
+      <span className="self-center text-sm ml-2">
         © {new Date().getFullYear()} {name}
       </span>
     </div>

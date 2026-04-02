@@ -78,11 +78,11 @@
   }
 
   body {
-    @apply bg-slate-50 text-slate-800 font-sans;
+    @apply bg-gray-100 text-slate-800 font-sans;
   }
 
   .dark body {
-    @apply bg-slate-950 text-slate-100;
+    @apply bg-gray-800 text-gray-100;
   }
 
   html {
