@@ -42,7 +42,7 @@ export default function RootLayout({
       lang="en"
       className={cn(fontSans.variable, fontMono.variable, fontDisplay.variable)}
     >
-      <body className="min-h-screen font-sans antialiased">
+      <body className="min-h-screen font-sans antialiased grid grid-rows-[auto_1fr_auto]">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <VideoDialogProvider>
             {children}
