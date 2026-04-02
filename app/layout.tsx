@@ -1,5 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
 import { Roboto, Nanum_Gothic_Coding, Rock_Salt } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { VideoDialogProvider } from "@/components/ui/VideoDialogContext";
@@ -41,12 +42,14 @@ export default function RootLayout({
       lang="en"
       className={cn(fontSans.variable, fontMono.variable, fontDisplay.variable)}
     >
-      <body className="min-h-screen bg-gray-100 font-sans antialiased">
-        <VideoDialogProvider>
-          {children}
-          <VideoDialog />
-        </VideoDialogProvider>
-        <TailwindIndicator />
+      <body className="min-h-screen font-sans antialiased">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <VideoDialogProvider>
+            {children}
+            <VideoDialog />
+          </VideoDialogProvider>
+          <TailwindIndicator />
+        </ThemeProvider>
       </body>
     </html>
   );

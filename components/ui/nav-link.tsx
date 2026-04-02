@@ -12,7 +12,7 @@ export function NavLink({ href, label, customClasses }: NavLinkProps) {
     <Link
       href={href}
       className={cn(
-        "block text-base font-mono tracking-widest text-gray-900 hover:text-teal-700 hover:underline duration-150 ",
+        "block text-base font-mono tracking-widest text-gray-900 hover:text-teal-700 hover:underline duration-150 dark:text-slate-100 dark:hover:text-teal-400",
         customClasses,
       )}
     >

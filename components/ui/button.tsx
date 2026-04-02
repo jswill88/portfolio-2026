@@ -9,9 +9,10 @@ const buttonVariants = cva(
     inline-block
     rounded-md
     text-md
-    font-normal
+    font-medium
     shrink-0
     outline-none
+    cursor-pointer
     focus-visible:border-ring
     focus-visible:ring-primary/50
     focus-visible:ring-[2px]
@@ -25,12 +26,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-orange-400 text-black shadow-md",
+        default: "bg-teal-600 text-white shadow-md",
         destructive:
           "bg-red-500 text-white focus-visible:ring-red-500/20 dark:focus-visible:ring-red-500/40",
-        outline: "text-teal-800 bg-gray-100 border-2 border-teal-800 shadow-md",
-        secondary: "bg-teal-400 text-black shadow-md",
-        ghost: "",
+        outline:
+          "bg-white text-teal-800 border border-slate-300 shadow-sm dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700",
+        secondary:
+          "bg-teal-500 text-white shadow-md dark:bg-teal-400 dark:text-slate-900",
+        ghost:
+          "bg-transparent text-slate-800 dark:text-slate-200",
         link: "text-primary underline-offset-4 hover:underline",
       },
     },
@@ -61,8 +65,8 @@ const hoverVariants = cva(
       variant: {
         default: "bg-gray-100",
         destructive: "bg-destructive/90",
-        outline: "bg-teal-100",
-        secondary: "bg-teal-200",
+        outline: "bg-teal-100 dark:bg-slate-700",
+        secondary: "bg-teal-600 dark:bg-teal-300",
         ghost: "bg-accent",
         link: "none",
       },

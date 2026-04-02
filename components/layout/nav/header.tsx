@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Icon } from "../../icon";
 import { useLayout } from "../layout-context";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "@/components/ui/theme-toggle";
 import { motion, AnimatePresence } from "motion/react";
 import { animationPresets } from "@/lib/constants/animations";
 import { useScrollLock } from "@/hooks/useScrollLock";
@@ -46,11 +47,11 @@ export const Header = () => {
       <header className="relative z-1">
         <nav
           data-state={menuState && "active"}
-          className="w-full bg-gray-100 border-b"
+          className="w-full bg-white/80 border-b border-gray-200 backdrop-blur-sm dark:bg-slate-900/80 dark:border-slate-800"
         >
           <div className="mx-auto max-w-7xl">
             <div className="lg:flex flex-wrap items-center justify-between">
-              <div className="w-full flex items-center justify-between gap-12">
+              <div className="w-full flex items-center justify-between gap-4">
                 <Link href="/" aria-label="home">
                   <Icon
                     className="w-20 lg:w-30 py-2 px-4 lg:px-6 shrink-0"
@@ -63,31 +64,38 @@ export const Header = () => {
                   />
                 </Link>
 
-                <button
-                  ref={menuButtonRef}
-                  onClick={() => setMenuState(!menuState)}
-                  aria-label="Menu"
-                  aria-expanded={menuState}
-                  aria-controls="mobile-menu"
-                  aria-haspopup="dialog"
-                  className="block lg:hidden relative p-2.5 z-20 cursor-pointer"
-                >
-                  <Menu className="in-data-[state=active]:opacity-0 size-6 duration-200" />
-                  <X className="absolute inset-0 m-auto opacity-0 in-data-[state=active]:opacity-100 size-6  duration-200" />
-                </button>
+                <div className="flex items-center gap-2">
+                  <ThemeToggle />
+
+                  <button
+                    ref={menuButtonRef}
+                    onClick={() => setMenuState(!menuState)}
+                    aria-label="Menu"
+                    aria-expanded={menuState}
+                    aria-controls="mobile-menu"
+                    aria-haspopup="dialog"
+                    className="block lg:hidden relative p-2.5 z-20 cursor-pointer"
+                  >
+                    <Menu className="in-data-[state=active]:opacity-0 size-6 duration-200" />
+                    <X className="absolute inset-0 m-auto opacity-0 in-data-[state=active]:opacity-100 size-6 duration-200" />
+                  </button>
+                </div>
 
                 <div className="hidden lg:block">
                   <ul className="flex text-sm">
                     {header?.nav &&
-                      header.nav.map((item, index) => item !== null && (
-                        <li key={index}>
-                          <NavLink
-                            href={item.href}
-                            label={item.label ?? item.href}
-                            customClasses="p-5"
-                          />
-                        </li>
-                      ))}
+                      header.nav.map(
+                        (item, index) =>
+                          item !== null && (
+                            <li key={index}>
+                              <NavLink
+                                href={item.href}
+                                label={item.label ?? item.href}
+                                customClasses="p-5"
+                              />
+                            </li>
+                          ),
+                      )}
                   </ul>
                 </div>
               </div>
@@ -107,7 +115,7 @@ export const Header = () => {
                     </h2>
                     <ul
                       ref={menuRef}
-                      className="text-base bg-gray-100 rounded-bl-xl border-l border-b shadow-lg"
+                      className="text-base bg-white/80 rounded-bl-xl border-l border-b border-gray-200 shadow-lg dark:bg-slate-900/90 dark:border-slate-800"
                     >
                       {header?.nav &&
                         header.nav.map(

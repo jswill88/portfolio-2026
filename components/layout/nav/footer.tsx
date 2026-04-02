@@ -10,10 +10,10 @@ export const Footer = () => {
   const { footer } = globalSettings!;
 
   return (
-    <footer className="border-t bg-gray-100">
+    <footer className="border-t bg-gray-100 text-slate-800 dark:bg-slate-900 dark:text-slate-200">
       <div className="mx-auto max-w-7xl px-5">
         <div className="flex flex-wrap items-center gap-6 py-6 flex-col md:flex-row md:justify-between">
-          <div className="hidden md:block">
+          <div className="hidden md:block text-slate-700 dark:text-slate-300">
             <CopyrightLine />
           </div>
 
@@ -23,7 +23,7 @@ export const Footer = () => {
             ))}
           </div>
 
-          <div className="block md:hidden">
+          <div className="block md:hidden text-slate-700 dark:text-slate-300">
             <CopyrightLine />
           </div>
         </div>
