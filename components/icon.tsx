@@ -96,16 +96,22 @@ export const Icon = ({
   data,
   className = "",
   tinaField = "",
+  ariaHidden = false,
+  focusable = true,
 }) => {
+  const { name, color, size = "medium", style = "regular", source = "library", svg } = data;
+  const accessibilityProps = {
+    ...(ariaHidden !== undefined ? { "aria-hidden": ariaHidden } : {}),
+    ...(focusable !== undefined ? { focusable } : {}),
+  };
+
+  const isCustomSvg = source === "svg" && typeof svg === "string" && svg.trim().length > 0;
   //@ts-ignore
-  if (IconOptions[data.name] === null || IconOptions[data.name] === undefined) {
+  const IconSVG = name ? IconOptions[name] : null;
+
+  if (!isCustomSvg && (IconSVG === null || IconSVG === undefined)) {
     return null;
   }
-
-  const { name, color, size = "medium", style = "regular" } = data;
-
-  //@ts-ignore
-  const IconSVG = IconOptions[name];
 
   const iconSizeClasses =
   typeof size === "string"
@@ -116,19 +122,41 @@ export const Icon = ({
 
   const iconColor = color in iconColorClass ? color : "foreground";
 
+  const customSvgIcon = isCustomSvg ? (
+    <div
+      {...accessibilityProps}
+      className="h-full w-full [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current [&>svg]:stroke-current"
+      dangerouslySetInnerHTML={{ __html: svg.trim() }}
+    />
+  ) : null;
+
   if (style == "circle") {
     return (
       <div
         {...(tinaField ? { "data-tina-field": tinaField } : {})} // only render data-tina-field if it exists
+        {...accessibilityProps}
         className={`relative z-10 inline-flex items-center justify-center shrink-0 ${iconSizeClasses} rounded-full ${iconColorClass[iconColor].circle} ${className}`}
       >
-        <IconSVG className="w-2/3 h-2/3" />
+        {isCustomSvg ? customSvgIcon : <IconSVG className="w-2/3 h-2/3" />}
       </div>
     );
   } else {
+    if (isCustomSvg) {
+      return (
+        <div
+          {...(tinaField ? { "data-tina-field": tinaField } : {})}
+          {...accessibilityProps}
+          className={`inline-flex ${iconSizeClasses} ${iconColorClass[iconColor].regular} ${className}`}
+        >
+          {customSvgIcon}
+        </div>
+      );
+    }
+
     return (
       <IconSVG
         {...(tinaField ? { "data-tina-field": tinaField } : {})} // only render data-tina-field if it exists
+        {...accessibilityProps}
         className={`${iconSizeClasses} ${iconColorClass[iconColor].regular} ${className}`}
       />
     );

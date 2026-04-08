@@ -8,6 +8,7 @@ import { Callout } from "./callout";
 import { Stats } from "./stats";
 import { CallToAction } from "./call-to-action";
 import { About } from "./about";
+import { PillTags } from "./pill-tags";
 
 export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
   if (!props.blocks) return null;
@@ -42,6 +43,8 @@ const Block = (block: PageBlocks) => {
       return <CallToAction data={block} />;
     case "PageBlocksAbout":
       return <About data={block} />;
+    case "PageBlocksPillTags":
+      return <PillTags data={block} />;
     default:
       return null;
   }

@@ -56,7 +56,8 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
                       {item.icon && (
                         <Icon
                           data={{ ...item.icon, size: "medium" }}
-                          aria-hidden
+                          ariaHidden={true}
+                          focusable={false}
                         />
                       )}
                       <span className="leading-none inline-block">
@@ -72,7 +73,11 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
           <Button variant="secondary" size="lg" asChild>
             <a href={data.cta.url!} target="_blank" className="leading-none">
               {data.cta.icon && (
-                <Icon data={{ ...data.cta.icon, size: "medium" }} aria-hidden />
+                <Icon
+                  data={{ ...data.cta.icon, size: "medium" }}
+                  ariaHidden={true}
+                  focusable={false}
+                />
               )}
               {data.cta.label}
             </a>

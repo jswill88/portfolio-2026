@@ -21,7 +21,12 @@ const parseIconName = (name: string) => {
   }
 };
 
-export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
+const getSiblingFieldValue = (form: any, inputName: string, siblingField: string) => {
+  const path = inputName.split(".").slice(0, -1).concat(siblingField);
+  return path.reduce((acc: any, key) => (acc == null ? undefined : acc[key]), form.getState().values);
+};
+
+const BaseIconPickerInput = ({ input }: { input: any }) => {
   const [filter, setFilter] = React.useState("");
   const filteredBlocks = React.useMemo(() => {
     return Object.keys(IconOptions).filter((name) => {
@@ -140,7 +145,41 @@ export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
       </Popover>
     </div>
   );
-});
+};
+
+export const IconPickerInput = wrapFieldsWithMeta(BaseIconPickerInput);
+
+const ConditionalIconPickerField = (props: any) => {
+  const source = getSiblingFieldValue(props.form, props.input.name, "source") ?? "library";
+
+  if (source !== "library") {
+    return null;
+  }
+
+  return <IconPickerInput {...props} />;
+};
+
+const ConditionalSvgTextareaField = (props: any) => {
+  const source = getSiblingFieldValue(props.form, props.input.name, "source") ?? "library";
+
+  if (source !== "svg") {
+    return null;
+  }
+
+  return (
+    <div className="space-y-2">
+      <label className="block text-sm font-medium text-gray-700">{props.field.label}</label>
+      {props.field.description ? (
+        <p className="text-xs text-gray-500">{props.field.description}</p>
+      ) : null}
+      <textarea
+        {...props.input}
+        rows={8}
+        className="block w-full rounded-sm border border-gray-200 bg-white px-3 py-2 font-mono text-sm shadow-inner"
+      />
+    </div>
+  );
+};
 
 export const iconSchema = {
   type: "object",
@@ -149,10 +188,35 @@ export const iconSchema = {
   fields: [
     {
       type: "string",
+      label: "Source",
+      name: "source",
+      options: [
+        {
+          label: "Library Icon",
+          value: "library",
+        },
+        {
+          label: "Custom SVG",
+          value: "svg",
+        },
+      ],
+    },
+    {
+      type: "string",
       label: "Icon",
       name: "name",
       ui: {
-        component: IconPickerInput as any,
+        component: ConditionalIconPickerField as any,
+      },
+    },
+    {
+      type: "string",
+      label: "SVG Markup",
+      name: "svg",
+      description:
+        "Paste inline SVG markup here for icons not available in the picker.\nUse currentColor in the SVG if you want the color setting to apply.",
+      ui: {
+        component: ConditionalSvgTextareaField as any,
       },
     },
     {
