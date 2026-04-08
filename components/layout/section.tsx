@@ -1,54 +1,29 @@
 import React, { ReactNode } from "react";
 import { cn } from "../../lib/utils";
-import type { TinaField } from "tinacms";
 
-interface SectionProps extends React.HTMLProps<HTMLElement> {
-  background?: string;
+interface SectionProps extends Omit<React.ComponentPropsWithoutRef<"section">, "title"> {
   children: ReactNode;
+  title?: ReactNode;
+  "data-tina-field"?: string;
 }
 
 export const Section: React.FC<SectionProps> = ({
   className,
   children,
-  background,
+  title,
+  "data-tina-field": dataTinaField,
   ...props
 }) => {
   return (
-    <div className="bg-default">
-      <section className={cn("mx-auto max-w-7xl px-5", className)} {...props}>
+    <div>
+      <section className={cn("mx-auto mb-10 max-w-7xl px-5 md:mb-16", className)} {...props}>
+        {title ? (
+          <div className="mb-3 md:mb-4" data-tina-field={dataTinaField}>
+            <h2 className="text-5xl font-mono text-orange-500 dark:text-orange-400 md:text-7xl">{title}</h2>
+          </div>
+        ) : null}
         {children}
       </section>
     </div>
   );
 };
-
-export const tailwindBackgroundOptions = [
-  { label: "Default", value: "bg-default" },
-  { label: "White", value: "bg-white/80" },
-  { label: "Gray", value: "bg-gray-50/80" },
-  { label: "Zinc", value: "bg-zinc-50" },
-  { label: "Black", value: "bg-black/80" },
-  { label: "Red", value: "bg-red-50/80" },
-  { label: "Orange", value: "bg-orange-50/80" },
-  { label: "Yellow", value: "bg-yellow-50/80" },
-  { label: "Green", value: "bg-green-50/80" },
-  { label: "Lime", value: "bg-lime-50/80" },
-  { label: "Emerald", value: "bg-emerald-50/80" },
-  { label: "Teal", value: "bg-teal-50/80" },
-  { label: "Cyan", value: "bg-cyan-50/80" },
-  { label: "Blue", value: "bg-blue-50/80" },
-  { label: "Sky", value: "bg-sky-50/80" },
-  { label: "Indigo", value: "bg-indigo-50/80" },
-  { label: "Violet", value: "bg-violet-50/80" },
-  { label: "Purple", value: "bg-purple-50/80" },
-  { label: "Fuchsia", value: "bg-fuchsia-50/80" },
-  { label: "Pink", value: "bg-pink-50/80" },
-  { label: "Rose", value: "bg-rose-50/80" },
-];
-
-export const sectionBlockSchemaField = {
-  type: "string",
-  label: "Background",
-  name: "background",
-  options: tailwindBackgroundOptions,
-} satisfies TinaField;

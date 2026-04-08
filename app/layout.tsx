@@ -40,6 +40,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn(fontSans.variable, fontMono.variable, fontDisplay.variable)}
     >
       <body className="min-h-screen font-sans antialiased grid grid-rows-[auto_1fr_auto]">

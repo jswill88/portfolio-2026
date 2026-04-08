@@ -44,7 +44,7 @@ export const Header = () => {
         )}
       </AnimatePresence>
 
-      <header className="relative z-1">
+      <header className="relative z-1 mb-8">
         <nav
           data-state={menuState && "active"}
           className="w-full bg-gray-100 border-b border-gray-400 backdrop-blur-sm dark:bg-gray-800 dark:border-gray-700"

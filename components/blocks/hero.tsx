@@ -5,7 +5,6 @@ import { tinaField } from "tinacms/dist/react";
 import { iconSchema } from "@/tina/fields/icon";
 import { imageSchema } from "@/tina/fields/image";
 import { PageBlocksHero } from "@/tina/__generated__/types";
-import { sectionBlockSchemaField } from "../layout/section";
 import { useLayout } from "../layout/layout-context";
 import { Image } from "@/components/ui/image";
 import { Icon } from "@/components/icon";
@@ -15,7 +14,7 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
   const { globalSettings } = useLayout();
 
   return (
-    <section className="relative grid sm:grid-cols-[1fr_1fr] md:grid-cols-[1fr_2fr] items-start gap-3 sm:gap-6 mx-auto mb-10 px-5 pt-8 max-w-6xl">
+    <section className="relative grid sm:grid-cols-[1fr_1fr] md:grid-cols-[1fr_2fr] items-start gap-3 sm:gap-6 mx-auto mb-10 px-5 max-w-6xl">
       {data.image && (
         <Image
           tinaField={tinaField(data, "image")}
@@ -88,7 +87,6 @@ export const heroBlockSchema: Template = {
   name: "hero",
   label: "Hero",
   fields: [
-    sectionBlockSchemaField,
     {
       type: "string",
       label: "Intro",

@@ -5,6 +5,8 @@ import { Icon } from "../../icon";
 import { useLayout } from "../layout-context";
 import { SocialLink } from "@/components/ui/social-link";
 
+const COPYRIGHT_YEAR = new Date().getFullYear();
+
 export const Footer = () => {
   const { globalSettings } = useLayout();
   const { footer } = globalSettings!;
@@ -47,7 +49,7 @@ const CopyrightLine = () => {
       </Link>
 
       <span className="self-center text-sm ml-2">
-        © {new Date().getFullYear()} {name}
+        © {COPYRIGHT_YEAR} {name}
       </span>
     </div>
   );
