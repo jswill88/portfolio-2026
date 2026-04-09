@@ -1,5 +1,45 @@
-import type { Collection } from "tinacms";
+import type { Collection, TinaField } from "tinacms";
 import { iconSchema } from "../fields/icon";
+
+const globalPillSchema: TinaField = {
+  type: "object",
+  label: "Pills",
+  name: "pills",
+  list: true,
+  ui: {
+    itemProps: (item: { id?: string; text?: string } | undefined) => ({
+      label: item?.text || item?.id || "Pill",
+    }),
+    defaultItem: {
+      id: "react",
+      text: "React",
+      icon: {
+        name: "BiLogoReact",
+        color: "foreground",
+        style: "float",
+      },
+    },
+  },
+  fields: [
+    {
+      type: "string",
+      label: "ID",
+      name: "id",
+      required: true,
+      description: "Reusable key, for example react or typescript.",
+    },
+    {
+      ...iconSchema,
+      required: false,
+    },
+    {
+      type: "string",
+      label: "Text",
+      name: "text",
+      required: true,
+    },
+  ],
+};
 
 const Global: Collection = {
   label: "Global",
@@ -21,6 +61,7 @@ const Global: Collection = {
       label: "Title",
       name: "title",
     },
+    globalPillSchema,
     {
       type: "object",
       label: "Header",

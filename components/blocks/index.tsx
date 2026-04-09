@@ -11,6 +11,7 @@ import { About } from "./about";
 import { PillTags } from "./pill-tags";
 import { Entry } from "./entry";
 import { SectionEntries } from "./section-entries";
+import { ProjectCardsSection } from "./project-cards-section";
 
 export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
   if (!props.blocks) return null;
@@ -51,6 +52,8 @@ const Block = (block: PageBlocks) => {
       return <Entry data={block} />;
     case "PageBlocksSectionEntries":
       return <SectionEntries data={block} />;
+    case "PageBlocksProjectCardsSection":
+      return <ProjectCardsSection data={block} />;
     default:
       return null;
   }

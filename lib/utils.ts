@@ -12,3 +12,15 @@ export function toSectionId(value: string) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
+
+export function getSectionId(sectionId?: string | null, title?: string | null) {
+  if (sectionId?.trim()) {
+    return toSectionId(sectionId);
+  }
+
+  if (title?.trim()) {
+    return toSectionId(title);
+  }
+
+  return undefined;
+}

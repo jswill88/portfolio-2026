@@ -5,7 +5,8 @@ import { tinaField } from "tinacms/dist/react";
 import { PageBlocksSectionEntries } from "../../tina/__generated__/types";
 import { Section } from "../layout/section";
 import { entryBlockSchema, EntryContent } from "./entry";
-import { toSectionId } from "@/lib/utils";
+import { getSectionId } from "@/lib/utils";
+import { RichTextContent } from "../ui/rich-text-content";
 
 export const SectionEntries = ({ data }: { data: PageBlocksSectionEntries }) => {
   const hasAnyThumbnails = !!data.entries?.some(
@@ -14,7 +15,7 @@ export const SectionEntries = ({ data }: { data: PageBlocksSectionEntries }) => 
 
   return (
     <Section
-      id={data.title ? toSectionId(data.title) : undefined}
+      id={getSectionId(data.sectionId, data.title)}
       title={data.title || undefined}
       data-tina-field={data.title ? tinaField(data, "title") : undefined}
     >
@@ -27,6 +28,11 @@ export const SectionEntries = ({ data }: { data: PageBlocksSectionEntries }) => 
           ) : null,
         )}
       </div>
+      {data.body ? (
+        <div className="mt-10" data-tina-field={tinaField(data, "body")}>
+          <RichTextContent content={data.body} />
+        </div>
+      ) : null}
     </Section>
   );
 };
@@ -37,6 +43,20 @@ export const sectionEntriesBlockSchema: Template = {
   ui: {
     defaultItem: {
       title: "Experience",
+      body: {
+        type: "root",
+        children: [
+          {
+            type: "p",
+            children: [
+              {
+                type: "text",
+                text: "Add any additional context, smaller projects, or supporting notes here.",
+              },
+            ],
+          },
+        ],
+      },
       entries: [entryBlockSchema.ui?.defaultItem],
     },
   },
@@ -46,6 +66,18 @@ export const sectionEntriesBlockSchema: Template = {
       label: "Title",
       name: "title",
       required: false,
+    },
+    {
+      type: "string",
+      label: "Section ID",
+      name: "sectionId",
+      required: false,
+      description: "Optional stable anchor id for nav links. Falls back to a slug from the title.",
+    },
+    {
+      type: "rich-text",
+      label: "Body",
+      name: "body",
     },
     {
       type: "object",

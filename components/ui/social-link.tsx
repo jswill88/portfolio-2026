@@ -32,7 +32,7 @@ export function SocialLink({ link, ...rest }: SocialLinkProps) {
         />
         <Icon
           data={{ ...link.icon, size: "small" }}
-          className="block absolute inset-0 text-teal-700 dark:text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity ease-linear"
+          className="block absolute inset-0 text-teal-600 dark:text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity ease-linear"
           aria-hidden
         />
       </Link>

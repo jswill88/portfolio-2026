@@ -1,22 +1,17 @@
 'use client';
 import React from 'react';
 
-import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import type { Template } from 'tinacms';
 import { PageBlocksContent } from '../../tina/__generated__/types';
 import { tinaField } from 'tinacms/dist/react';
 import { Section } from '../layout/section';
-import { Mermaid } from './mermaid';
+import { RichTextContent } from '../ui/rich-text-content';
+import { getSectionId } from '@/lib/utils';
 
 export const Content = ({ data }: { data: PageBlocksContent }) => {
   return (
-    <Section className='prose prose-lg' data-tina-field={tinaField(data, 'body')}>
-      <TinaMarkdown
-        content={data.body}
-        components={{
-          mermaid: (props: any) => <Mermaid {...props} />,
-        }}
-      />
+    <Section id={getSectionId(data.sectionId)} data-tina-field={tinaField(data, 'body')}>
+      <RichTextContent content={data.body} />
     </Section>
   );
 };
@@ -31,6 +26,12 @@ export const contentBlockSchema: Template = {
     },
   },
   fields: [
+    {
+      type: 'string',
+      label: 'Section ID',
+      name: 'sectionId',
+      description: 'Optional stable anchor id for nav links.',
+    },
     {
       type: 'rich-text',
       label: 'Body',

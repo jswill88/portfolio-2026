@@ -18,8 +18,8 @@ export const Section: React.FC<SectionProps> = ({
     <div>
       <section className={cn("mx-auto mb-10 max-w-6xl px-5 md:mb-16", className)} {...props}>
         {title ? (
-          <div className="mb-4 md:mb-5" data-tina-field={dataTinaField}>
-            <h2 className="text-5xl font-mono text-orange-500 dark:text-orange-400 md:text-7xl">{title}</h2>
+          <div className="mb-4 md:mb-6" data-tina-field={dataTinaField}>
+            <h2 className="text-4xl font-mono text-orange-500 dark:text-orange-400 md:text-6xl">{title}</h2>
           </div>
         ) : null}
         {children}

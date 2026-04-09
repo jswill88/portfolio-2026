@@ -9,6 +9,7 @@
     "start": "tinacms build && next start",
     "export": "pnpm run build && next export",
     "lint": "biome lint",
+    "migrate:pills": "node scripts/migrate-pills-to-global.mjs",
     "dev:build": "next build",
     "preinstall": "npx only-allow pnpm"
   },

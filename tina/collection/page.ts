@@ -10,6 +10,7 @@ import { aboutBlockSchema } from "@/components/blocks/about";
 import { pillTagsBlockSchema } from "@/components/blocks/pill-tags";
 import { entryBlockSchema } from "@/components/blocks/entry";
 import { sectionEntriesBlockSchema } from "@/components/blocks/section-entries";
+import { projectCardsSectionBlockSchema } from "@/components/blocks/project-cards-section";
 
 const Page: Collection = {
   label: "Pages",
@@ -46,6 +47,7 @@ const Page: Collection = {
         pillTagsBlockSchema,
         entryBlockSchema,
         sectionEntriesBlockSchema,
+        projectCardsSectionBlockSchema,
       ],
     },
   ],

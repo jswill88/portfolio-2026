@@ -2,12 +2,12 @@
 
 import type { Template } from "tinacms";
 import { tinaField } from "tinacms/dist/react";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { PageBlocksEntry, PageBlocksSectionEntriesEntries } from "../../tina/__generated__/types";
 import { TinaField } from "tinacms";
 import { imageSchema } from "@/tina/fields/image";
 import { Image } from "@/components/ui/image";
 import { Section } from "../layout/section";
+import { RichTextContent } from "../ui/rich-text-content";
 
 export const Entry = ({ data }: { data: PageBlocksEntry }) => {
   return (
@@ -66,11 +66,11 @@ export const EntryContent = ({
           ) : null}
         </div>
 
-        <div
-          className="max-w-[72ch] text-base leading-relaxed [&>p+p]:mt-4"
-          data-tina-field={tinaField(data, "body")}
-        >
-          <TinaMarkdown content={data.body} />
+        <div data-tina-field={tinaField(data, "body")}>
+          <RichTextContent
+            content={data.body}
+            className="max-w-[72ch] text-base leading-relaxed [&>p+p]:mt-4 [&>h1]:mt-8 [&>h1]:text-3xl [&>h2]:mt-7 [&>h2]:text-2xl [&>h3]:mt-6 [&>h3]:text-xl"
+          />
         </div>
       </div>
     </div>

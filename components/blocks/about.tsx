@@ -6,12 +6,12 @@ import { PageBlocksAbout } from '../../tina/__generated__/types';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { Section } from '../layout/section';
-import { toSectionId } from '@/lib/utils';
+import { getSectionId } from '@/lib/utils';
 
 export const About = ({ data }: { data: PageBlocksAbout }) => {
   return (
     <Section
-      id={data.title ? toSectionId(data.title) : undefined}
+      id={getSectionId(data.sectionId, data.title)}
       title={data.title}
       data-tina-field={tinaField(data, 'title')}
     >
@@ -50,6 +50,13 @@ export const aboutBlockSchema: Template = {
       type: 'string',
       label: 'Title',
       name: 'title',
+    },
+    {
+      type: 'string',
+      label: 'Section ID',
+      name: 'sectionId',
+      description:
+        'Optional stable anchor id for nav links. Falls back to a slug from the title.',
     },
     {
       type: 'rich-text',
