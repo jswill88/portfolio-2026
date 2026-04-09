@@ -6,10 +6,15 @@ import { PageBlocksPillTags, PageBlocksPillTagsItems } from "../../tina/__genera
 import { iconSchema } from "@/tina/fields/icon";
 import { Icon } from "../icon";
 import { Section } from "../layout/section";
+import { toSectionId } from "@/lib/utils";
 
 export const PillTags = ({ data }: { data: PageBlocksPillTags }) => {
   return (
-    <Section title={data.title || undefined} data-tina-field={data.title ? tinaField(data, "title") : undefined}>
+    <Section
+      id={data.title ? toSectionId(data.title) : undefined}
+      title={data.title || undefined}
+      data-tina-field={data.title ? tinaField(data, "title") : undefined}
+    >
       <div className="flex flex-wrap gap-3">
         {data.items?.map((item, index) =>
           item ? <PillTag key={`${item.text}-${index}`} item={item} /> : null,
@@ -22,7 +27,7 @@ export const PillTags = ({ data }: { data: PageBlocksPillTags }) => {
 const PillTag = ({ item }: { item: PageBlocksPillTagsItems }) => {
   return (
     <div
-      className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-slate-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
+      className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-slate-800 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
       data-tina-field={tinaField(item)}
     >
       {item.icon ? (

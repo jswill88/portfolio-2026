@@ -6,10 +6,15 @@ import { PageBlocksAbout } from '../../tina/__generated__/types';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { Section } from '../layout/section';
+import { toSectionId } from '@/lib/utils';
 
 export const About = ({ data }: { data: PageBlocksAbout }) => {
   return (
-    <Section title={data.title} data-tina-field={tinaField(data, 'title')}>
+    <Section
+      id={data.title ? toSectionId(data.title) : undefined}
+      title={data.title}
+      data-tina-field={tinaField(data, 'title')}
+    >
       <div className="max-w-[72ch] text-lg leading-relaxed md:text-xl [&>p+p]:mt-4 md:[&>p+p]:mt-5" data-tina-field={tinaField(data, 'body')}>
         <TinaMarkdown content={data.body} />
       </div>

@@ -125,6 +125,7 @@ export const Header = () => {
                                   href={item.href}
                                   label={item.label ?? item.href}
                                   customClasses="py-2 px-5"
+                                  onClick={() => setMenuState(false)}
                                 />
                               </li>
                             ),

@@ -7,7 +7,7 @@ export const revalidate = 300;
 
 export default async function Home() {
   const data = await client.queries.page({
-    relativePath: `home.mdx`,
+    relativePath: "home.mdx",
   });
 
   return (

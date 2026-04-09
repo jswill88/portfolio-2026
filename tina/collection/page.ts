@@ -8,6 +8,8 @@ import { statsBlockSchema } from "@/components/blocks/stats";
 import { ctaBlockSchema } from "@/components/blocks/call-to-action";
 import { aboutBlockSchema } from "@/components/blocks/about";
 import { pillTagsBlockSchema } from "@/components/blocks/pill-tags";
+import { entryBlockSchema } from "@/components/blocks/entry";
+import { sectionEntriesBlockSchema } from "@/components/blocks/section-entries";
 
 const Page: Collection = {
   label: "Pages",
@@ -42,6 +44,8 @@ const Page: Collection = {
         videoBlockSchema,
         aboutBlockSchema,
         pillTagsBlockSchema,
+        entryBlockSchema,
+        sectionEntriesBlockSchema,
       ],
     },
   ],
