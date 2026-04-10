@@ -34,7 +34,7 @@ export const ProjectCard = ({
 
   return (
     <article>
-      <div className="grid items-stretch gap-1 sm:grid-cols-[minmax(0,1.7fr)_minmax(0,0.9fr)]">
+      <div className="grid items-stretch gap-2 grid-cols-[minmax(0,1.7fr)_minmax(0,0.9fr)]">
         <Image
           tinaField={tinaField(card, "primaryImage")}
           alt={card.primaryImage?.alt ?? ""}
@@ -58,7 +58,7 @@ export const ProjectCard = ({
             { maxWidth: "64em", width: "32vw" },
             { width: "220px" },
           ]}
-          aspectRatio={3 / 4}
+          aspectRatio={.71}
           className="mx-auto h-full w-full sm:mx-0 sm:justify-self-end"
         />
       </div>

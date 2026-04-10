@@ -60,6 +60,7 @@
   --font-leading-loose: 1.75;
 
   --animate-wave: wave .8s ease-in-out infinite;
+  --animate-letter-reveal: letter-reveal .45s ease-out both;
 
   @keyframes wave {
     0%,
@@ -68,6 +69,15 @@
     }
     50% {
       transform: rotate(30deg);
+    }
+  }
+
+  @keyframes letter-reveal {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 }

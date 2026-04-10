@@ -63,7 +63,7 @@ const hoverVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-gray-100",
+        default: "bg-orange-600",
         destructive: "bg-destructive/90",
         outline: "bg-teal-100 dark:bg-slate-700",
         secondary: "bg-teal-600 dark:bg-teal-300",

@@ -11,12 +11,15 @@ import { animationPresets } from "@/lib/constants/animations";
 import { useScrollLock } from "@/hooks/useScrollLock";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { NavLink } from "@/components/ui/nav-link";
+import { cn } from "@/lib/utils";
 
 export const Header = () => {
   const { globalSettings } = useLayout();
   const [menuState, setMenuState] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const menuRef = useRef<HTMLUListElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const lastScrollY = useRef(0);
   const header = globalSettings?.header;
 
   useScrollLock(menuState);
@@ -31,6 +34,33 @@ export const Header = () => {
     return () => document.removeEventListener("keydown", onKey);
   }, [menuState]);
 
+  useEffect(() => {
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY <= 16) {
+        setIsHeaderVisible(true);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      const isScrollingUp = currentScrollY < lastScrollY.current;
+      const hasMeaningfulDelta = Math.abs(currentScrollY - lastScrollY.current) > 6;
+
+      if (hasMeaningfulDelta) {
+        setIsHeaderVisible(isScrollingUp);
+        lastScrollY.current = currentScrollY;
+      }
+    };
+
+    lastScrollY.current = window.scrollY;
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const shouldShowHeader = menuState || isHeaderVisible;
+
   return (
     <>
       <AnimatePresence>
@@ -44,15 +74,20 @@ export const Header = () => {
         )}
       </AnimatePresence>
 
-      <header className="relative z-1 mb-8">
+      <header
+        className={cn(
+          "sticky top-0 z-40 mb-8 transition-transform duration-300 ease-out",
+          shouldShowHeader ? "translate-y-0" : "-translate-y-full",
+        )}
+      >
         <nav
           data-state={menuState && "active"}
-          className="w-full bg-gray-100 border-b border-gray-400 backdrop-blur-sm dark:bg-gray-800 dark:border-gray-700"
+          className="w-full border-b border-gray-400 bg-gray-100/90 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-800/90"
         >
           <div className="mx-auto max-w-7xl">
             <div className="lg:flex flex-wrap items-center justify-between">
               <div className="w-full flex items-center justify-between gap-4">
-                <Link href="/" aria-label="home">
+                <Link href="/#top" aria-label="home">
                   <Icon
                     className="w-20 lg:w-30 py-2 px-4 lg:px-6 shrink-0"
                     data={{

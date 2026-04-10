@@ -10,9 +10,11 @@ type NavLinkProps = {
 };
 
 export function NavLink({ href, label, customClasses, onClick }: NavLinkProps) {
+  const resolvedHref = href === "/" ? "/#top" : href;
+
   return (
     <Link
-      href={href}
+      href={resolvedHref}
       onClick={onClick}
       className={cn(
         "group block text-base font-mono tracking-widest text-gray-900 transition-colors duration-150 hover:text-teal-700 dark:text-slate-100 dark:hover:text-teal-400",
@@ -20,7 +22,7 @@ export function NavLink({ href, label, customClasses, onClick }: NavLinkProps) {
       )}
     >
       <span className="relative inline-block">
-        {label ?? href}
+        {label ?? resolvedHref}
         <span className="absolute inset-x-0 -bottom-1 h-px origin-left scale-x-0 bg-current transition-transform duration-200 group-hover:scale-x-100" />
       </span>
     </Link>

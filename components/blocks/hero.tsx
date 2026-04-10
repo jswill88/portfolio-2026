@@ -12,6 +12,46 @@ import { Button } from "@/components/ui/button";
 
 export const Hero = ({ data }: { data: PageBlocksHero }) => {
   const { globalSettings } = useLayout();
+  const heroNameSegments = globalSettings?.name
+    ? globalSettings.name.split(/(\s+)/).reduce<
+        Array<
+          | { type: "space"; value: string }
+          | {
+              type: "word";
+              value: string;
+              letters: Array<{ character: string; revealIndex: number }>;
+            }
+        >
+      >((segments, part) => {
+        if (!part) {
+          return segments;
+        }
+
+        if (/^\s+$/.test(part)) {
+          segments.push({ type: "space", value: part });
+          return segments;
+        }
+
+        const revealStart = segments.reduce((count, segment) => {
+          if (segment.type === "space") {
+            return count;
+          }
+
+          return count + segment.letters.length;
+        }, 0);
+
+        segments.push({
+          type: "word",
+          value: part,
+          letters: Array.from(part).map((character, index) => ({
+            character,
+            revealIndex: revealStart + index,
+          })),
+        });
+
+        return segments;
+      }, [])
+    : [];
 
   return (
     <section className="relative grid sm:grid-cols-[1fr_1fr] md:grid-cols-[1fr_2fr] items-start gap-3 sm:gap-6 mx-auto mb-10 px-5 max-w-6xl">
@@ -35,7 +75,30 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
         </p>
         {globalSettings?.name && (
           <h1 className="inline-block text-5xl md:text-7xl font-display">
-            {globalSettings.name}
+            {heroNameSegments.map((segment, segmentIndex) =>
+              segment.type === "space" ? (
+                <span key={`space-${segmentIndex}`} aria-hidden="true">
+                  {segment.value.replaceAll(" ", "\u00A0")}
+                </span>
+              ) : (
+                <span
+                  key={`${segment.value}-${segmentIndex}`}
+                  className="inline-block whitespace-nowrap"
+                  aria-hidden="true"
+                >
+                  {segment.letters.map(({ character, revealIndex }, letterIndex) => (
+                    <span
+                      key={`${character}-${letterIndex}`}
+                      className="inline-block opacity-0 motion-safe:animate-letter-reveal motion-reduce:opacity-100 motion-reduce:animate-none"
+                      style={{ animationDelay: `${revealIndex * 0.1}s` }}
+                    >
+                      {character}
+                    </span>
+                  ))}
+                </span>
+              ),
+            )}
+            <span className="sr-only">{globalSettings.name}</span>
           </h1>
         )}
         {globalSettings?.title && (
