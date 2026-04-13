@@ -43,7 +43,7 @@ export const ProjectCard = ({
           sizes={[
             { maxWidth: "40em", width: "100vw" },
             { maxWidth: "64em", width: "66vw" },
-            { width: "420px" },
+            { width: "722px" },
           ]}
           aspectRatio={4 / 3}
           className="h-full"
@@ -56,7 +56,7 @@ export const ProjectCard = ({
           sizes={[
             { maxWidth: "40em", width: "56vw" },
             { maxWidth: "64em", width: "32vw" },
-            { width: "220px" },
+            { width: "383px" },
           ]}
           aspectRatio={.71}
           className="mx-auto h-full w-full sm:mx-0 sm:justify-self-end"
@@ -66,7 +66,7 @@ export const ProjectCard = ({
       <div className="mt-5 space-y-5">
         <div className="space-y-3">
           <h3
-            className="text-2xl font-semibold tracking-tight"
+            className="text-2xl font-bold tracking-tight"
             data-tina-field={tinaField(card, "title")}
           >
             {card.title}

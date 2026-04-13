@@ -61,6 +61,7 @@ export const Image = ({
         src={src}
         preload={isLcp}
         loading={isLcp ? "eager" : "lazy"}
+        fetchPriority={isLcp ? "high" : "low"}
         fill={true}
         placeholder="blur"
         blurDataURL={blurDataURL}

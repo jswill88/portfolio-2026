@@ -61,13 +61,13 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
           alt={data.image.alt ?? ""}
           src={data.image.src}
           blurDataURL={data.image.blurDataURL}
-          sizes={[{ maxWidth: "40em", width: "100vw" }, { width: 640 }]}
+          sizes={[{ maxWidth: "40em", width: "100vw" }, { width: 361 }]}
           isLcp={true}
           className="justify-self-center sm:justify-self-auto w-full max-w-50 sm:max-w-lg rounded-full border dark:border-gray-700"
         />
       )}
       <div className="relative grid gap-3 md:gap-5 justify-items-start">
-        <p className="inline-block font-sans font-black text-2xl md:text-4xl leading-tight">
+        <p className="inline-block font-sans font-bold text-2xl md:text-4xl leading-tight">
           <span className="mr-2 animate-wave inline-block" aria-hidden>
             👋
           </span>
@@ -102,7 +102,7 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
           </h1>
         )}
         {globalSettings?.title && (
-          <h2 className="font-sans text-2xl md:text-4xl font-black leading-none">
+          <h2 className="font-sans text-2xl md:text-4xl font-bold leading-none">
             I'm a {globalSettings.title}
           </h2>
         )}

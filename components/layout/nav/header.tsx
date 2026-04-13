@@ -142,7 +142,7 @@ export const Header = () => {
                     role="dialog"
                     aria-modal="true"
                     aria-labelledby="mobile-menu-label"
-                    className="lg:hidden absolute top-full right-0 min-w-80"
+                    className="lg:hidden absolute top-full right-0 min-w-80 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain"
                   >
                     <h2 id="mobile-menu-label" className="sr-only">
                       Main navigation

@@ -42,7 +42,7 @@ export const RawRenderer = ({ rawData, parentColor }) => {
           className="fixed inset-0 z-10 overflow-y-auto"
           onClose={closeModal}
         >
-          <div className="min-h-screen max-h-screen px-4 py-12 text-center flex flex-col items-center justify-center">
+          <div className="min-h-dvh max-h-dvh px-4 py-12 text-center flex flex-col items-center justify-center">
             <TransitionChild
               as={Fragment}
               enter="ease-out duration-300"

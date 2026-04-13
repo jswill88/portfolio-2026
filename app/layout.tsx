@@ -9,7 +9,7 @@ import "@/styles.css";
 const fontSans = Roboto({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["400", "700", "900"],
+  weight: ["400", "700"],
   display: "swap",
   fallback: ["Arial", "Helvetica", "sans-serif"],
   adjustFontFallback: true,
@@ -18,7 +18,7 @@ const fontSans = Roboto({
 const fontMono = Nanum_Gothic_Coding({
   subsets: ["latin"],
   variable: "--font-mono",
-  weight: ["400", "700"],
+  weight: ["400"],
   display: "swap",
   fallback: [
     "ui-monospace",
@@ -56,7 +56,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn(fontSans.variable, fontMono.variable, fontDisplay.variable)}
     >
-      <body className="min-h-screen font-sans antialiased grid grid-rows-[auto_1fr_auto]">
+      <body className="min-h-dvh font-sans antialiased grid grid-rows-[auto_1fr_auto]">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>
