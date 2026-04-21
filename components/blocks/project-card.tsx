@@ -41,7 +41,6 @@ export const ProjectCard = ({
           src={card.primaryImage?.src ?? ""}
           blurDataURL={card.primaryImage?.blurDataURL ?? ""}
           sizes={[
-            { maxWidth: "40em", width: "100vw" },
             { maxWidth: "64em", width: "66vw" },
             { width: "722px" },
           ]}
@@ -54,8 +53,7 @@ export const ProjectCard = ({
           src={card.secondaryImage?.src ?? ""}
           blurDataURL={card.secondaryImage?.blurDataURL ?? ""}
           sizes={[
-            { maxWidth: "40em", width: "56vw" },
-            { maxWidth: "64em", width: "32vw" },
+            { maxWidth: "64em", width: "34vw" },
             { width: "383px" },
           ]}
           aspectRatio={.71}

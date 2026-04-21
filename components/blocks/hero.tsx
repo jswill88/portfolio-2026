@@ -61,7 +61,12 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
           alt={data.image.alt ?? ""}
           src={data.image.src}
           blurDataURL={data.image.blurDataURL}
-          sizes={[{ maxWidth: "40em", width: "100vw" }, { width: 361 }]}
+          sizes={[
+            { maxWidth: "40em", width: 200 },
+            { maxWidth: "48em", width: "50vw" },
+            { maxWidth: "64em", width: "33vw" },
+            { width: 361 }
+          ]}
           isLcp={true}
           className="justify-self-center sm:justify-self-auto w-full max-w-50 sm:max-w-lg rounded-full border dark:border-gray-700"
         />
