@@ -43,6 +43,17 @@ const fontDisplay = Rock_Salt({
 export const metadata: Metadata = {
   title: "Josh Williams",
   description: "Portfolio",
+  icons: {
+    icon: {
+      url: "/logo.svg",
+      type: "image/svg+xml",
+    },
+    other: {
+      rel: "mask-icon",
+      url: "/safari-pinned-tab.svg",
+      color: "#000000",
+    },
+  },
 };
 
 export default function RootLayout({
