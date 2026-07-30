@@ -40,6 +40,7 @@ export const ProjectCard = ({
           alt={card.primaryImage?.alt ?? ""}
           src={card.primaryImage?.src ?? ""}
           blurDataURL={card.primaryImage?.blurDataURL ?? ""}
+          posterSrc={card.primaryImage?.posterSrc}
           sizes={[
             { maxWidth: "64em", width: "66vw" },
             { width: "722px" },
@@ -52,6 +53,7 @@ export const ProjectCard = ({
           alt={card.secondaryImage?.alt ?? ""}
           src={card.secondaryImage?.src ?? ""}
           blurDataURL={card.secondaryImage?.blurDataURL ?? ""}
+          posterSrc={card.secondaryImage?.posterSrc}
           sizes={[
             { maxWidth: "64em", width: "34vw" },
             { width: "383px" },

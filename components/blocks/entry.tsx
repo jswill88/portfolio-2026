@@ -41,6 +41,7 @@ export const EntryContent = ({
           alt={thumbnail.alt ?? ""}
           src={thumbnail.src!}
           blurDataURL={thumbnail.blurDataURL!}
+          posterSrc={thumbnail.posterSrc}
           sizes={[{ maxWidth: "48em", width: 96 }, { width: 112 }]}
           className="mx-auto aspect-square w-24 rounded-2xl border shadow-none md:mx-0 md:w-28"
         />

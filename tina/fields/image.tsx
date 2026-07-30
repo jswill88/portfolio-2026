@@ -78,6 +78,13 @@ export const imageSchema = {
       type: "string",
     },
     {
+      name: "posterSrc",
+      label: "Animation Poster",
+      type: "image",
+      description:
+        "Optional still image shown while an animation loads and for visitors who prefer reduced motion.",
+    },
+    {
       name: "blurDataURL",
       type: "string",
       required: true,

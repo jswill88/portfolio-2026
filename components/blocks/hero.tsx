@@ -61,6 +61,7 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
           alt={data.image.alt ?? ""}
           src={data.image.src}
           blurDataURL={data.image.blurDataURL}
+          posterSrc={data.image.posterSrc}
           sizes={[
             { maxWidth: "40em", width: 200 },
             { maxWidth: "48em", width: "50vw" },

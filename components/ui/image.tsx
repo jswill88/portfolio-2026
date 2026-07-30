@@ -6,6 +6,7 @@ type ImageProps = React.HTMLAttributes<HTMLDivElement> & {
   src: string;
   alt: string;
   blurDataURL: string;
+  posterSrc?: string | null;
   sizes: Size[];
   aspectRatio?: number;
   isLcp?: boolean;
@@ -24,11 +25,13 @@ export const Image = ({
   src,
   alt,
   blurDataURL,
+  posterSrc,
   sizes,
   isLcp = false,
   tinaField,
   aspectRatio = 1,
   className,
+  style,
   ...divProps
 }: ImageProps) => {
   const sizesString = sizes
@@ -47,7 +50,13 @@ export const Image = ({
 
   return (
     <div
-      style={{ aspectRatio }}
+      style={{
+        aspectRatio,
+        backgroundImage: posterSrc ? `url("${posterSrc}")` : undefined,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        ...style,
+      }}
       data-tina-field={tinaField}
       {...divProps}
       className={cn(
@@ -55,18 +64,26 @@ export const Image = ({
         className,
       )}
     >
-      <NextImage
-        className="absolute inset-0 object-cover transition-opacity duration-300"
-        alt={alt ?? ""}
-        src={src}
-        preload={isLcp}
-        loading={isLcp ? "eager" : "lazy"}
-        fetchPriority={isLcp ? "high" : "low"}
-        fill={true}
-        placeholder="blur"
-        blurDataURL={blurDataURL}
-        sizes={sizesString}
-      />
+      <picture>
+        {posterSrc ? (
+          <source
+            media="(prefers-reduced-motion: reduce)"
+            srcSet={posterSrc}
+          />
+        ) : null}
+        <NextImage
+          className="absolute inset-0 object-cover transition-opacity duration-300"
+          alt={alt ?? ""}
+          src={src}
+          preload={isLcp}
+          loading={isLcp ? "eager" : "lazy"}
+          fetchPriority={isLcp ? "high" : "low"}
+          fill={true}
+          placeholder={posterSrc ? "empty" : "blur"}
+          blurDataURL={blurDataURL}
+          sizes={sizesString}
+        />
+      </picture>
     </div>
   );
 };
