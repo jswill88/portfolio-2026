@@ -77,6 +77,7 @@ export const Header = () => {
       <header
         className={cn(
           "sticky top-0 z-40 mb-8 transition-transform duration-300 ease-out",
+          menuState && "bg-gray-100 dark:bg-gray-800",
           shouldShowHeader ? "translate-y-0" : "-translate-y-full",
         )}
       >
